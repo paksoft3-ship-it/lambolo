@@ -27,7 +27,7 @@ export const FOOTER_EXPLORE: NavLink[] = [
 
 export const FOOTER_SUPPORT: NavLink[] = [
   { label: "İletişim", href: "mailto:info@lambolo.com" },
-  { label: "Gizlilik Politikası", href: "#" },
-  { label: "KVKK Aydınlatma Metni", href: "#" },
-  { label: "Kullanım Koşulları", href: "#" },
+  { label: "Gizlilik Politikası & KVKK", href: "/gizlilik-politikasi" },
+  { label: "Çerez Politikası", href: "/cerez-politikasi" },
+  { label: "Kullanım Koşulları", href: "/kullanim-kosullari" },
 ];

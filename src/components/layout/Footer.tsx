@@ -4,6 +4,7 @@ import { Logo } from "@/components/ui/Logo";
 import { Container } from "@/components/layout/Container";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { FOOTER_EXPLORE, FOOTER_SUPPORT } from "@/data/navigation";
+import { CookieSettingsLink } from "@/components/cookies/CookieSettingsLink";
 
 // TikTok isn't in lucide; small inline glyph.
 function TikTok({ className = "" }: { className?: string }) {
@@ -76,6 +77,11 @@ export function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <CookieSettingsLink className="transition-colors hover:text-white">
+                  Çerez Tercihleri
+                </CookieSettingsLink>
+              </li>
             </ul>
           </nav>
 

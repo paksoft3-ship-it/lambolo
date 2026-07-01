@@ -17,6 +17,14 @@ export type LeadRecord = Record<string, unknown> & {
   email: string;
 };
 
+/** A stored lead as returned to the admin panel — always has an id. */
+export type LeadRow = LeadRecord & {
+  id: string;
+  created_at?: string;
+};
+
+export type StorageMode = "supabase" | "mock" | "unconfigured";
+
 export class LeadConfigError extends Error {
   constructor(message: string) {
     super(message);
@@ -49,7 +57,7 @@ const TABLES: Record<LeadKind, string> = {
 };
 
 // Dev-only in-memory mock. Module scope persists across requests in dev.
-const mockStore: Record<LeadKind, Map<string, LeadRecord>> = {
+const mockStore: Record<LeadKind, Map<string, LeadRow>> = {
   waitlist: new Map(),
   partnership: new Map(),
 };
@@ -90,7 +98,12 @@ function insertMock(kind: LeadKind, record: LeadRecord): StoreResult {
   if (store.has(key)) {
     throw new DuplicateLeadError();
   }
-  store.set(key, record);
+  const row: LeadRow = {
+    ...record,
+    id: (record.id as string) ?? crypto.randomUUID(),
+    created_at: (record.created_at as string) ?? new Date().toISOString(),
+  };
+  store.set(key, row);
   // Visible in server logs so submissions are never "silently" lost in dev.
   // eslint-disable-next-line no-console
   console.info(
@@ -116,7 +129,83 @@ export async function saveLead(
   return insertMock(kind, record);
 }
 
-export function storageMode(): "supabase" | "mock" | "unconfigured" {
+export function storageMode(): StorageMode {
   if (hasSupabase) return "supabase";
   return isProd ? "unconfigured" : "mock";
+}
+
+// --- Read / delete (admin panel) ------------------------------------------
+
+async function listSupabase(kind: LeadKind): Promise<LeadRow[]> {
+  const table = TABLES[kind];
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/${table}?select=*&order=created_at.desc`,
+    {
+      headers: {
+        apikey: SUPABASE_KEY as string,
+        Authorization: `Bearer ${SUPABASE_KEY as string}`,
+      },
+      cache: "no-store",
+    },
+  );
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "");
+    throw new Error(`Supabase list failed (${res.status}): ${detail}`);
+  }
+  return (await res.json()) as LeadRow[];
+}
+
+function listMock(kind: LeadKind): LeadRow[] {
+  return Array.from(mockStore[kind].values()).sort((a, b) =>
+    String(b.created_at ?? "").localeCompare(String(a.created_at ?? "")),
+  );
+}
+
+/** Return all leads of a kind, newest first. */
+export async function listLeads(kind: LeadKind): Promise<LeadRow[]> {
+  if (hasSupabase) return listSupabase(kind);
+  if (isProd) {
+    throw new LeadConfigError(
+      "Lead storage is not configured. Set Supabase env vars to read leads.",
+    );
+  }
+  return listMock(kind);
+}
+
+async function deleteSupabase(kind: LeadKind, id: string): Promise<void> {
+  const table = TABLES[kind];
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/${table}?id=eq.${encodeURIComponent(id)}`,
+    {
+      method: "DELETE",
+      headers: {
+        apikey: SUPABASE_KEY as string,
+        Authorization: `Bearer ${SUPABASE_KEY as string}`,
+        Prefer: "return=minimal",
+      },
+    },
+  );
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "");
+    throw new Error(`Supabase delete failed (${res.status}): ${detail}`);
+  }
+}
+
+function deleteMock(kind: LeadKind, id: string): void {
+  const store = mockStore[kind];
+  for (const [key, row] of store) {
+    if (row.id === id) {
+      store.delete(key);
+      return;
+    }
+  }
+}
+
+/** Delete a single lead by id. */
+export async function deleteLead(kind: LeadKind, id: string): Promise<void> {
+  if (hasSupabase) return deleteSupabase(kind, id);
+  if (isProd) {
+    throw new LeadConfigError("Lead storage is not configured.");
+  }
+  deleteMock(kind, id);
 }

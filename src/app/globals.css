@@ -40,6 +40,19 @@ body {
     @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
   }
 
+  .legal-prose h2 {
+    @apply mb-2 mt-8 font-display text-xl font-bold text-navy;
+  }
+  .legal-prose p {
+    @apply mb-4;
+  }
+  .legal-prose ul {
+    @apply mb-4 list-disc space-y-1.5 pl-5;
+  }
+  .legal-prose a {
+    @apply font-semibold text-brand-blue underline;
+  }
+
   /* Outlined playful headline word (white stroke backing) */
   .headline-outline {
     paint-order: stroke fill;

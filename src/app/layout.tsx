@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { fredoka, nunitoSans } from "@/lib/fonts";
+import { CookieConsent } from "@/components/cookies/CookieConsent";
 import "./globals.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lambolo.com";
@@ -79,6 +80,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
