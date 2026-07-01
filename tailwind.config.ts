@@ -31,7 +31,7 @@ const config: Config = {
         sans: ["var(--font-nunito)", "sans-serif"],
       },
       maxWidth: {
-        container: "1240px",
+        container: "1440px",
       },
       borderRadius: {
         input: "12px",

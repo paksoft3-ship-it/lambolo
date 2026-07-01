@@ -131,10 +131,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/20 pt-6 text-sm text-white/80 sm:flex-row">
           <p>© 2026 Lambolo. Tüm hakları saklıdır.</p>
-          <p>Türkiye&apos;de tasarlanıyor, sevgiyle geliştiriliyor. 💛</p>
-        </div>
 
-        <div className="mt-6 flex justify-center">
           <a
             href="https://paksoft.com.tr"
             target="_blank"
@@ -154,6 +151,8 @@ export function Footer() {
               PakSoft
             </span>
           </a>
+
+          <p>Türkiye&apos;de tasarlanıyor, sevgiyle geliştiriliyor. 💛</p>
         </div>
       </Container>
     </footer>
