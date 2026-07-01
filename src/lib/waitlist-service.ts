@@ -1,8 +1,10 @@
 import { saveLead } from "@/lib/leads-store";
 import { waitlistSchema, type WaitlistPayload } from "@/lib/validation";
 
+import type { StorageMode } from "@/lib/leads-store";
+
 export type WaitlistServiceResult =
-  | { ok: true; mode: "supabase" | "mock" }
+  | { ok: true; mode: StorageMode }
   | { ok: false; code: "duplicate" | "config" | "error"; message: string };
 
 /**

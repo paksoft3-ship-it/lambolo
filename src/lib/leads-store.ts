@@ -1,15 +1,17 @@
 /**
  * Provider-independent persistence layer for leads (waitlist + partnership).
  *
- * Behaviour:
- *  - If Supabase env vars are present, leads are written to Supabase via the
- *    REST API using the service-role key (server-only — never exposed to the
- *    browser).
- *  - Otherwise, in development we fall back to a clearly-marked in-memory mock
- *    store so the form is fully testable without a database.
- *  - In production with no database configured we throw a typed configuration
- *    error so a real submission is never silently lost.
+ * Backend selection (first available wins):
+ *  1. Neon / any Postgres — if DATABASE_URL is set (recommended, used on Vercel).
+ *  2. Supabase REST — if the Supabase env vars are set.
+ *  3. Dev in-memory mock — clearly marked, so forms work without a database.
+ *  4. Production with none of the above → a typed config error (never a silent
+ *     data loss).
+ *
+ * All secrets here are server-only and never exposed to the browser.
  */
+
+import { neon } from "@neondatabase/serverless";
 
 export type LeadKind = "waitlist" | "partnership";
 
@@ -23,7 +25,7 @@ export type LeadRow = LeadRecord & {
   created_at?: string;
 };
 
-export type StorageMode = "supabase" | "mock" | "unconfigured";
+export type StorageMode = "neon" | "supabase" | "mock" | "unconfigured";
 
 export class LeadConfigError extends Error {
   constructor(message: string) {
@@ -41,26 +43,81 @@ export class DuplicateLeadError extends Error {
 
 export type StoreResult = {
   ok: true;
-  mode: "supabase" | "mock";
+  mode: StorageMode;
 };
 
+const DATABASE_URL =
+  process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const isProd = process.env.NODE_ENV === "production";
 
+const hasNeon = Boolean(DATABASE_URL);
 const hasSupabase = Boolean(SUPABASE_URL && SUPABASE_KEY);
 
 /** Table names can be overridden via env; sensible defaults otherwise. */
 const TABLES: Record<LeadKind, string> = {
-  waitlist: process.env.SUPABASE_WAITLIST_TABLE ?? "waitlist_leads",
-  partnership: process.env.SUPABASE_PARTNERSHIP_TABLE ?? "partnership_leads",
+  waitlist:
+    process.env.LEADS_WAITLIST_TABLE ??
+    process.env.SUPABASE_WAITLIST_TABLE ??
+    "waitlist_leads",
+  partnership:
+    process.env.LEADS_PARTNERSHIP_TABLE ??
+    process.env.SUPABASE_PARTNERSHIP_TABLE ??
+    "partnership_leads",
 };
+
+/**
+ * Table names are interpolated into SQL, so they must be plain identifiers.
+ * They come from env/defaults (operator-controlled), but we validate anyway.
+ */
+function safeTable(kind: LeadKind): string {
+  const table = TABLES[kind];
+  if (!/^[a-z_][a-z0-9_]*$/i.test(table)) {
+    throw new Error(`Invalid table name for ${kind}: ${table}`);
+  }
+  return table;
+}
+
+// Lazily created so the driver is only touched when actually used.
+let sqlClient: ReturnType<typeof neon> | null = null;
+function getSql() {
+  if (!sqlClient) sqlClient = neon(DATABASE_URL);
+  return sqlClient;
+}
+
+function isUniqueViolation(err: unknown): boolean {
+  const code = (err as { code?: string })?.code;
+  const msg = err instanceof Error ? err.message : String(err);
+  return code === "23505" || msg.includes("23505") || /duplicate key/i.test(msg);
+}
 
 // Dev-only in-memory mock. Module scope persists across requests in dev.
 const mockStore: Record<LeadKind, Map<string, LeadRow>> = {
   waitlist: new Map(),
   partnership: new Map(),
 };
+
+async function insertNeon(
+  kind: LeadKind,
+  record: LeadRecord,
+): Promise<StoreResult> {
+  const table = safeTable(kind);
+  const keys = Object.keys(record).filter((k) => k !== "id");
+  const cols = keys.join(", ");
+  const placeholders = keys.map((_, i) => `$${i + 1}`).join(", ");
+  const values = keys.map((k) => record[k] as unknown);
+  try {
+    await getSql().query(
+      `INSERT INTO ${table} (${cols}) VALUES (${placeholders})`,
+      values,
+    );
+  } catch (err) {
+    if (isUniqueViolation(err)) throw new DuplicateLeadError();
+    throw err;
+  }
+  return { ok: true, mode: "neon" };
+}
 
 async function insertSupabase(
   kind: LeadKind,
@@ -117,24 +174,36 @@ export async function saveLead(
   kind: LeadKind,
   record: LeadRecord,
 ): Promise<StoreResult> {
+  if (hasNeon) {
+    return insertNeon(kind, record);
+  }
   if (hasSupabase) {
     return insertSupabase(kind, record);
   }
   if (isProd) {
     throw new LeadConfigError(
-      "Waitlist storage is not configured. Set NEXT_PUBLIC_SUPABASE_URL and " +
-        "SUPABASE_SERVICE_ROLE_KEY to persist leads in production.",
+      "Lead storage is not configured. Set DATABASE_URL (Neon/Postgres) to " +
+        "persist leads in production.",
     );
   }
   return insertMock(kind, record);
 }
 
 export function storageMode(): StorageMode {
+  if (hasNeon) return "neon";
   if (hasSupabase) return "supabase";
   return isProd ? "unconfigured" : "mock";
 }
 
 // --- Read / delete (admin panel) ------------------------------------------
+
+async function listNeon(kind: LeadKind): Promise<LeadRow[]> {
+  const table = safeTable(kind);
+  const rows = await getSql().query(
+    `SELECT * FROM ${table} ORDER BY created_at DESC`,
+  );
+  return rows as LeadRow[];
+}
 
 async function listSupabase(kind: LeadKind): Promise<LeadRow[]> {
   const table = TABLES[kind];
@@ -163,13 +232,19 @@ function listMock(kind: LeadKind): LeadRow[] {
 
 /** Return all leads of a kind, newest first. */
 export async function listLeads(kind: LeadKind): Promise<LeadRow[]> {
+  if (hasNeon) return listNeon(kind);
   if (hasSupabase) return listSupabase(kind);
   if (isProd) {
     throw new LeadConfigError(
-      "Lead storage is not configured. Set Supabase env vars to read leads.",
+      "Lead storage is not configured. Set DATABASE_URL to read leads.",
     );
   }
   return listMock(kind);
+}
+
+async function deleteNeon(kind: LeadKind, id: string): Promise<void> {
+  const table = safeTable(kind);
+  await getSql().query(`DELETE FROM ${table} WHERE id = $1`, [id]);
 }
 
 async function deleteSupabase(kind: LeadKind, id: string): Promise<void> {
@@ -203,6 +278,7 @@ function deleteMock(kind: LeadKind, id: string): void {
 
 /** Delete a single lead by id. */
 export async function deleteLead(kind: LeadKind, id: string): Promise<void> {
+  if (hasNeon) return deleteNeon(kind, id);
   if (hasSupabase) return deleteSupabase(kind, id);
   if (isProd) {
     throw new LeadConfigError("Lead storage is not configured.");

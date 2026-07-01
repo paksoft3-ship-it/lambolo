@@ -18,7 +18,7 @@ async function safeCount(kind: "waitlist" | "partnership"): Promise<{
 
 function StorageBanner() {
   const mode = storageMode();
-  if (mode === "supabase") return null;
+  if (mode === "neon" || mode === "supabase") return null;
 
   const isMock = mode === "mock";
   return (

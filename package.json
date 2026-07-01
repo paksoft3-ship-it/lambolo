@@ -9,9 +9,11 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "db:setup": "node scripts/db-setup.mjs",
     "screenshot": "node scripts/screenshot.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "lucide-react": "^0.469.0",
     "next": "^15.5.19",
     "react": "19.0.0",

@@ -1,8 +1,10 @@
 import { saveLead } from "@/lib/leads-store";
 import { partnershipSchema, type PartnershipPayload } from "@/lib/validation";
 
+import type { StorageMode } from "@/lib/leads-store";
+
 export type PartnershipServiceResult =
-  | { ok: true; mode: "supabase" | "mock" }
+  | { ok: true; mode: StorageMode }
   | { ok: false; code: "duplicate" | "config" | "error"; message: string };
 
 export async function submitPartnership(
