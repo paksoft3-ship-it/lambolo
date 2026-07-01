@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lambolo - Dünyanın en eğlenceli ışık arkadaşları!</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-container": "#d3a600",
+                "surface-container-high": "#e6e8f2",
+                "primary-container": "#0073e0",
+                "on-primary-fixed-variant": "#00468c",
+                "soft-blue-background": "#F1F8FF",
+                "on-primary-fixed": "#001b3e",
+                "navy-heading": "#10346A",
+                "on-error-container": "#93000a",
+                "outline-variant": "#c1c6d6",
+                "surface": "#f9f9ff",
+                "body-text": "#26374F",
+                "surface-container-low": "#f1f3fd",
+                "on-tertiary-fixed": "#241a00",
+                "surface-container": "#ebedf7",
+                "on-surface": "#181c23",
+                "inverse-primary": "#aac7ff",
+                "brand-green": "#41B84E",
+                "on-tertiary-container": "#503d00",
+                "on-primary": "#ffffff",
+                "secondary-fixed": "#ffd9dd",
+                "brand-purple-soft": "#F0E8FF",
+                "on-primary-container": "#fefcff",
+                "secondary-container": "#df2359",
+                "error": "#ba1a1a",
+                "on-tertiary": "#ffffff",
+                "brand-blue-dark": "#0567CE",
+                "on-surface-variant": "#414754",
+                "brand-green-soft": "#E7F7E9",
+                "tertiary-fixed": "#ffdf91",
+                "brand-green-dark": "#24943A",
+                "on-background": "#181c23",
+                "background": "#f9f9ff",
+                "primary-fixed-dim": "#aac7ff",
+                "tertiary": "#755b00",
+                "surface-bright": "#f9f9ff",
+                "primary": "#005ab3",
+                "surface-container-lowest": "#ffffff",
+                "on-error": "#ffffff",
+                "on-secondary-container": "#fffbff",
+                "muted-text": "#66758B",
+                "tertiary-fixed-dim": "#f3c000",
+                "error-container": "#ffdad6",
+                "secondary-fixed-dim": "#ffb2bb",
+                "brand-pink-dark": "#DD2454",
+                "inverse-surface": "#2d3038",
+                "outline": "#717785",
+                "secondary": "#b90043",
+                "primary-fixed": "#d6e3ff",
+                "on-tertiary-fixed-variant": "#584400",
+                "on-secondary-fixed": "#400012",
+                "surface-container-highest": "#e0e2ec",
+                "footer-blue": "#0069D8",
+                "brand-orange": "#FF9D0A",
+                "soft-border": "#E7EDF4",
+                "surface-variant": "#e0e2ec",
+                "cream-background": "#FFF9EF",
+                "surface-tint": "#005db8",
+                "brand-pink-soft": "#FFE5ED",
+                "surface-dim": "#d7dae4",
+                "on-secondary": "#ffffff",
+                "inverse-on-surface": "#eef0fa",
+                "on-secondary-fixed-variant": "#910033"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "2xl": "22px",
+                "full": "9999px"
+            },
+            "spacing": {
+                "4xl": "96px",
+                "2xl": "64px",
+                "md": "24px",
+                "xs": "8px",
+                "lg": "32px",
+                "sm": "16px",
+                "container-max": "1240px",
+                "xl": "48px",
+                "gutter": "24px",
+                "3xl": "80px"
+            },
+            "fontFamily": {
+                "hero-headline-mobile": ["Plus Jakarta Sans"],
+                "body-sm-mobile": ["Nunito Sans"],
+                "body-md": ["Nunito Sans"],
+                "body-lg": ["Nunito Sans"],
+                "section-title": ["Plus Jakarta Sans"],
+                "button-text": ["Plus Jakarta Sans"],
+                "section-title-mobile": ["Plus Jakarta Sans"],
+                "hero-headline": ["Plus Jakarta Sans"],
+                "card-title": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                "hero-headline-mobile": ["42px", {"lineHeight": "1.05", "fontWeight": "700"}],
+                "body-sm-mobile": ["15px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "1.55", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "1.55", "fontWeight": "400"}],
+                "section-title": ["38px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                "button-text": ["16px", {"lineHeight": "1.0", "fontWeight": "700"}],
+                "section-title-mobile": ["30px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                "hero-headline": ["62px", {"lineHeight": "1.02", "fontWeight": "700"}],
+                "card-title": ["20px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .floating-anim {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-body-text overflow-x-hidden">
+<!-- Header (Mobile Optimized) -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm h-20 px-4 flex justify-between items-center">
+<img alt="Lambolo Logo" class="h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6gRIBks9UqmwmU7Dl41SZtsyyl5h3xej2NBxtwo8PPGt7jAAyBpAjG8wDe_rrujTGyAjz5ALFheKZlDSump0x0jYb7T801d40o1aAn6YSR7iB0j7Rr0ujx8XW6XSjEv67w16abramdRCimXKhMob0M7Lt56nqvUrGzxjxp1pOCdJJkm_8SFnnokS6jMdxEBXisHNhXk8QvkINtxFfQBTJjAh8x56Uhzdgw1GQ0doUTXZFCqPC4P7eehezT_apoJbAOQ4rZE7Yr80"/>
+<button class="p-2 text-primary" id="mobile-menu-toggle">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</header>
+<!-- Mobile Navigation Drawer (Hidden by default) -->
+<div class="fixed inset-0 bg-white z-[60] translate-x-full transition-transform duration-300" id="mobile-nav">
+<div class="flex flex-col h-full p-8">
+<div class="flex justify-between items-center mb-12">
+<img alt="Lambolo Logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6gRIBks9UqmwmU7Dl41SZtsyyl5h3xej2NBxtwo8PPGt7jAAyBpAjG8wDe_rrujTGyAjz5ALFheKZlDSump0x0jYb7T801d40o1aAn6YSR7iB0j7Rr0ujx8XW6XSjEv67w16abramdRCimXKhMob0M7Lt56nqvUrGzxjxp1pOCdJJkm_8SFnnokS6jMdxEBXisHNhXk8QvkINtxFfQBTJjAh8x56Uhzdgw1GQ0doUTXZFCqPC4P7eehezT_apoJbAOQ4rZE7Yr80"/>
+<button class="p-2" id="mobile-menu-close">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-6 text-xl font-button-text">
+<a class="text-on-surface-variant" href="#">Ürünler</a>
+<a class="text-on-surface-variant" href="#">Karakterler</a>
+<a class="text-on-surface-variant" href="#">Nasıl Çalışır?</a>
+<a class="text-on-surface-variant" href="#">Neden Lambolo?</a>
+<a class="text-on-surface-variant" href="#">SSS</a>
+</nav>
+<div class="mt-auto">
+<button class="w-full py-4 bg-secondary-container text-white font-button-text rounded-full shadow-lg">
+                    Bekleme Listesine Katıl
+                </button>
+</div>
+</div>
+</div>
+<!-- Hero Section -->
+<main class="pt-20 bg-brand-orange">
+<div class="px-4 pt-12 pb-8 text-center">
+<h1 class="font-hero-headline-mobile text-hero-headline-mobile text-white mb-6">
+                Dünyanın en <span class="text-brand-pink-dark">eğlenceli ışık</span> arkadaşları!
+            </h1>
+<div class="inline-flex gap-2 mb-8 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-full">
+<span class="text-white font-bold">Dokun.</span>
+<span class="text-white font-bold">Oyna.</span>
+<span class="text-white font-bold">Aydınlat.</span>
+</div>
+<!-- Product Render Hero -->
+<div class="relative w-full max-w-[320px] mx-auto mb-8 floating-anim">
+<img alt="Kurbi" class="w-full drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyFx3lbX8U6-R3cD_AzF0uRnwNvkJNU3CMeVCoDgobr34um64A3YlolPFbns73BGIQV2zdN0BzNLeScZBGgXFYNsVsMo5ORxvn34toMT3O9snbKfgyFg-1rPpcuOpqSYaLJ8Xfu7W0h8gRmRJE_snJ_fKhBDO7miHRLpYza_4gZLEIj6DWmyRz-KTfzU9zCdqa5qEcSHDxyVW4CnE-qL1dc6vqPXdyG8ZwlcK3Dk36HG3jPdOY7ZIJIGTj2sL-AHZVioAVufIOK4w"/>
+<!-- Decorative Badge -->
+<div class="absolute -right-4 top-1/2 -translate-y-1/2 bg-brand-blue-dark text-white rounded-full p-6 w-32 h-32 flex items-center justify-center text-center text-xs font-bold rotate-12 shadow-xl border-4 border-white">
+                    ANAHTARIN ÜSTÜNE TAK, IŞIĞI OYNA!
+                </div>
+</div>
+<p class="text-white font-body-md text-lg px-4 mb-8">
+                Lambolo, anahtarların üstüne takılan sevimli karakter aksesuarlarıyla ışığı bir oyun haline getiriyor.
+            </p>
+<div class="flex flex-col gap-4">
+<button class="w-full py-5 bg-brand-pink-dark text-white font-button-text rounded-full shadow-xl flex items-center justify-center gap-2">
+                    Bekleme Listesine Katıl
+                    <span class="material-symbols-outlined">arrow_forward_ios</span>
+</button>
+<button class="w-full py-5 bg-white text-on-surface font-button-text rounded-full shadow-md flex items-center justify-center gap-2">
+                    Nasıl Çalışır?
+                    <span class="material-symbols-outlined text-brand-orange">play_circle</span>
+</button>
+</div>
+</div>
+<!-- Waitlist Form (Blue Card) -->
+<div class="px-4 pb-12">
+<div class="bg-primary-container rounded-[32px] p-8 text-white shadow-2xl">
+<h2 class="text-2xl font-bold text-center mb-2">İlk üretim için bekleme listesine katıl!</h2>
+<p class="text-center text-sm opacity-90 mb-8">Lansmana özel avantajlardan ilk sen haberdar ol.</p>
+<form class="space-y-4">
+<input class="w-full bg-white text-body-text rounded-xl p-4 border-none focus:ring-2 focus:ring-brand-blue-dark" placeholder="Ad Soyad" type="text"/>
+<input class="w-full bg-white text-body-text rounded-xl p-4 border-none focus:ring-2 focus:ring-brand-blue-dark" placeholder="E-posta Adresi" type="email"/>
+<input class="w-full bg-white text-body-text rounded-xl p-4 border-none focus:ring-2 focus:ring-brand-blue-dark" placeholder="Telefon (Opsiyonel)" type="tel"/>
+<div class="space-y-3">
+<label class="text-sm font-semibold">Çocuğunuzun yaşı (Opsiyonel)</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-2 bg-white/20 rounded-lg font-bold border border-white/30 hover:bg-white/40" type="button">2-4</button>
+<button class="py-2 bg-white/20 rounded-lg font-bold border border-white/30 hover:bg-white/40" type="button">5-7</button>
+<button class="py-2 bg-white/20 rounded-lg font-bold border border-white/30 hover:bg-white/40" type="button">8+</button>
+</div>
+</div>
+<button class="w-full py-5 bg-brand-pink-dark text-white font-button-text rounded-full shadow-lg flex items-center justify-center gap-2 mt-4">
+                        Listeye Katıl
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+<p class="text-center text-[10px] opacity-75 mt-4 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">lock</span> Bilgilerin güvende. Spam yok.
+                    </p>
+</form>
+</div>
+</div>
+</main>
+<!-- Character Carousel -->
+<section class="py-16 bg-white overflow-hidden">
+<div class="px-4 mb-10 text-center">
+<h2 class="font-section-title-mobile text-section-title-mobile text-navy-heading">
+                Işıkla Oynayan 6 Sevimli Karakter!
+            </h2>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar px-4 pb-8">
+<!-- Kurbi -->
+<div class="flex-none w-[280px] bg-brand-green-soft rounded-3xl p-6 flex flex-col items-center shadow-[0px_12px_35px_rgba(16,52,106,0.10)]">
+<img alt="Kurbi" class="w-48 mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyFx3lbX8U6-R3cD_AzF0uRnwNvkJNU3CMeVCoDgobr34um64A3YlolPFbns73BGIQV2zdN0BzNLeScZBGgXFYNsVsMo5ORxvn34toMT3O9snbKfgyFg-1rPpcuOpqSYaLJ8Xfu7W0h8gRmRJE_snJ_fKhBDO7miHRLpYza_4gZLEIj6DWmyRz-KTfzU9zCdqa5qEcSHDxyVW4CnE-qL1dc6vqPXdyG8ZwlcK3Dk36HG3jPdOY7ZIJIGTj2sL-AHZVioAVufIOK4w"/>
+<h3 class="text-2xl font-black text-brand-green-dark">Kurbi</h3>
+<p class="text-sm text-on-surface-variant mb-4">Meraklı Kurbağa</p>
+<span class="px-4 py-1 bg-white/50 rounded-full text-brand-green-dark text-xs font-bold">Yakında!</span>
+</div>
+<!-- Pandi -->
+<div class="flex-none w-[280px] bg-soft-blue-background rounded-3xl p-6 flex flex-col items-center shadow-[0px_12px_35px_rgba(16,52,106,0.10)]">
+<img alt="Pandi" class="w-48 mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8nPktEk6pCGIQO5hPl37YHnAxEUy-p3h_meNbG-ckLbOYzwLSN2IJ1hsqc5FXnGRi827km18ae2rk0rZks8ifDYXUgRqnuhCCTmJthoVecIHG0MyJYaAEalnShBaYp8QQPTAXvfnFy8o33FAP03XMo5Me5qqMpKb18w8FTZO_smXSNPk0TJ1_NZIS-CdVst05vYjFM_NlkfAaWrBjgXOtMHIv6nLDMoDBfr6A_epe7F8Bq1ojcOuJy0_7ZTKDa8b4iXWDp4p-69I"/>
+<h3 class="text-2xl font-black text-brand-blue-dark">Pandi</h3>
+<p class="text-sm text-on-surface-variant mb-4">Neşeli Panda</p>
+<span class="px-4 py-1 bg-white/50 rounded-full text-brand-blue-dark text-xs font-bold">Yakında!</span>
+</div>
+<!-- Rexi -->
+<div class="flex-none w-[280px] bg-brand-green-soft rounded-3xl p-6 flex flex-col items-center shadow-[0px_12px_35px_rgba(16,52,106,0.10)]">
+<img alt="Rexi" class="w-48 mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0n7yK5_2Nm3aWQz3wwhFNln9AqnatHHf_ZCdYexnQoC8FdDAcJpYGEocxIQnNI3A34HbVl7Gd_GCWzQe_dyh0hcmkdguldqiMtm78noX1K6jhbFs2FVg7f6wrqnYDtxynqbglLiczjxFa_tyiV-8XBP703JeHz5y4HPQUr2fSbtK3RcIEQspWYp9YzhgqfxHd3IymveuQYVeNuUfqTcmozo9SxjKm_ZPDrF8Uil4RwGpTVK-CTdDl5xCpy91b2b8OB4lKKvlsp0w"/>
+<h3 class="text-2xl font-black text-brand-green-dark">Rexi</h3>
+<p class="text-sm text-on-surface-variant mb-4">Cesur Dinozor</p>
+<span class="px-4 py-1 bg-white/50 rounded-full text-brand-green-dark text-xs font-bold">Yakında!</span>
+</div>
+<!-- Leo -->
+<div class="flex-none w-[280px] bg-cream-background rounded-3xl p-6 flex flex-col items-center shadow-[0px_12px_35px_rgba(16,52,106,0.10)]">
+<img alt="Leo" class="w-48 mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpgVb2zTKsTVP7U_rii8qix4Cb78F9NJGjjsabdkmBHSJrnIu3KYeX-i3rlGMYKvXaQeNsIqnrFRzAINItEemvkPUi3gRXz0En4nKlbd-UbbYFgJybJOsfNJ9W8H_eBCzt2OHRwN95ASeRHTbNQmToyagzjpBWmdrTtUzobrEi5E7S5BHX9Mzt6Om8NEB6d4AAniuw4ueK72sLMNPOSozR65R7YKjDsWMQLQEZLdN4ftf2jyKNHabVMTgQKXtkvG9ESo5XyWBiPCU"/>
+<h3 class="text-2xl font-black text-brand-orange">Leo</h3>
+<p class="text-sm text-on-surface-variant mb-4">Neşeli Aslan</p>
+<span class="px-4 py-1 bg-white/50 rounded-full text-brand-orange text-xs font-bold">Yakında!</span>
+</div>
+<!-- Miu -->
+<div class="flex-none w-[280px] bg-brand-pink-soft rounded-3xl p-6 flex flex-col items-center shadow-[0px_12px_35px_rgba(16,52,106,0.10)]">
+<img alt="Miu" class="w-48 mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiqmhR5s0C5134_nTv8vG8ia-fuRLOMBmwtt-f6eDvrXBAcTaeto-jNKJi7CWLkUvbC8iWA_EDRwmesLkoaBDH9ZHWfVqjcYqDMLgAu3ZKYO0DtDJWGteZkMuNTakF4xAF8dJM9NviHqtbQZBrUi-9TbSkKQKPkiVonnfjsyozlXCkYEl0gABqcfi9FcvHVjX1P2xf2l6Aym9646fzKWBQinYpmTUn6APEGzFdBmTl1r1Mm5noa6wi4IlRoQcugv8OcPK_-VLjHU8"/>
+<h3 class="text-2xl font-black text-brand-pink-dark">Miu</h3>
+<p class="text-sm text-on-surface-variant mb-4">Tatlı Kedi</p>
+<span class="px-4 py-1 bg-white/50 rounded-full text-brand-pink-dark text-xs font-bold">Yakında!</span>
+</div>
+<!-- Uni -->
+<div class="flex-none w-[280px] bg-brand-purple-soft rounded-3xl p-6 flex flex-col items-center shadow-[0px_12px_35px_rgba(16,52,106,0.10)]">
+<img alt="Uni" class="w-48 mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcckvY1yj0i7MsQG59VJDtJfQ28cmDbyS0uXrjN-Shs4fMe36DlPh_bM59CFNEr48DiBolAM5wGX7GdXcomkeZTmc9UeMHMU1JMZU-rMLcuiw2fqcBNj_OLJx3P0lBBC3ztGqY3hiN9pj1frjsBtLASg63jB95E6RmIL5U2So3a9xkdhmZsqmSKijZvSx9OgsMvNGBzfG6Ubhic1uX9eaIYhUHRVjmIdwSN7kg35eE11uwzYpEDKJGl_Ave4h1046VOzP6ojpX9jQ"/>
+<h3 class="text-2xl font-black text-on-primary-fixed-variant">Uni</h3>
+<p class="text-sm text-on-surface-variant mb-4">Rüya Arkadaşı</p>
+<span class="px-4 py-1 bg-white/50 rounded-full text-on-primary-fixed-variant text-xs font-bold">Yakında!</span>
+</div>
+</div>
+</section>
+<!-- Neden Lambolo? (Stacked Cards) -->
+<section class="py-16 bg-primary-container relative">
+<!-- SVG Divider -->
+<div class="absolute -top-1 left-0 w-full overflow-hidden rotate-180">
+<svg class="relative block w-full h-12 fill-white" preserveaspectratio="none" viewbox="0 0 1200 120">
+<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113,14.29,1200,52.47V0Z"></path>
+</svg>
+</div>
+<div class="px-4 text-center mt-8">
+<h2 class="font-section-title-mobile text-section-title-mobile text-white mb-10">Neden Lambolo?</h2>
+<div class="flex flex-col gap-6">
+<!-- Card 1 -->
+<div class="bg-white rounded-3xl p-8 shadow-xl flex flex-col items-center">
+<div class="w-16 h-16 bg-brand-orange/10 rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl text-brand-orange" style="font-variation-settings: 'FILL' 1;">sentiment_very_satisfied</span>
+</div>
+<h4 class="text-xl font-bold text-navy-heading mb-2">Işığı Eğlenceli Hale Getirir</h4>
+<p class="text-on-surface-variant text-sm">Anahtara dokunmak artık bir oyun. Çocuklar ışığı severek kullanır.</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-white rounded-3xl p-8 shadow-xl flex flex-col items-center">
+<div class="w-16 h-16 bg-brand-green/10 rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl text-brand-green" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<h4 class="text-xl font-bold text-navy-heading mb-2">Güvenli &amp; Çocuk Dostu</h4>
+<p class="text-on-surface-variant text-sm">Yumuşak silikon malzeme, keskin kenar yok. Minikler için tamamen güvenli.</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-white rounded-3xl p-8 shadow-xl flex flex-col items-center">
+<div class="w-16 h-16 bg-brand-pink-dark/10 rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl text-brand-pink-dark" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<h4 class="text-xl font-bold text-navy-heading mb-2">Odaları Renklendirir</h4>
+<p class="text-on-surface-variant text-sm">Sevimli karakterler çocuk odalarına neşe ve kişilik katar.</p>
+</div>
+<!-- Card 4 -->
+<div class="bg-white rounded-3xl p-8 shadow-xl flex flex-col items-center">
+<div class="w-16 h-16 bg-brand-blue-dark/10 rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl text-brand-blue-dark" style="font-variation-settings: 'FILL' 1;">card_giftcard</span>
+</div>
+<h4 class="text-xl font-bold text-navy-heading mb-2">Harika Bir Hediye</h4>
+<p class="text-on-surface-variant text-sm">Doğum günü, yeni oda, özel günler için yenilikçi ve farklı bir hediye.</p>
+</div>
+</div>
+</div>
+<!-- SVG Divider -->
+<div class="absolute -bottom-1 left-0 w-full overflow-hidden">
+<svg class="relative block w-full h-12 fill-surface" preserveaspectratio="none" viewbox="0 0 1200 120">
+<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113,14.29,1200,52.47V0Z"></path>
+</svg>
+</div>
+</section>
+<!-- Nasıl Çalışır? (Vertical Timeline) -->
+<section class="py-16 px-4 bg-surface">
+<h2 class="font-section-title-mobile text-section-title-mobile text-navy-heading text-center mb-16">Nasıl Çalışır?</h2>
+<div class="space-y-12 relative">
+<!-- Connecting Line -->
+<div class="absolute left-[39px] top-0 bottom-0 w-1 bg-brand-orange/20 z-0"></div>
+<!-- Step 1 -->
+<div class="flex items-start gap-6 relative z-10">
+<div class="flex-none w-20 h-20 bg-white rounded-full border-4 border-brand-orange flex items-center justify-center shadow-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up high-quality photo of adult hands gently placing a soft green silicone Lambolo frog accessory over a standard white household light switch. Bright children's bedroom lighting and soft focus background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUKvNTsyT9FLK0MVlJqLvR6MvfasKIbwQb6id7ailfEdh3UgGcasVcXYFcmaO6TuFDB_ueY1NRcM647HPuFiokjubRUIKm4Nc1dMKxudV5RkjDgJBn1kfkqzR_S7QnefM02AKIN_4uwRF6RA6jg3T1LcoB4nlorYHHmi4Ivs5XrquwvbqcmTlKgJ79ixYbGejAV9jCGnP1mrzAYC_7sfe5-r1G6pXy87_tAKMPS9M0XG7ZdvpKJe6Gn0_OEqRDEYcwc4_MK8d1d_M"/>
+<div class="absolute -top-2 -left-2 w-8 h-8 bg-primary-container text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+</div>
+<div class="pt-2">
+<h4 class="text-xl font-bold text-brand-green-dark">Tak</h4>
+<p class="text-on-surface-variant">Karakteri anahtarın üstüne yerleştir.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-6 relative z-10">
+<div class="flex-none w-20 h-20 bg-white rounded-full border-4 border-brand-green flex items-center justify-center shadow-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A detailed photo of a child's finger pressing the soft tongue of a Lambolo character to flick a light switch. The setting is a vibrant, modern kid's playroom with primary colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJrpld5wEq0O1AZF9pHsS7EuDRKgKrIOaGQSjgJ9xrngAzD6N2l38xhKNVaYtSdB7OAOyk6MF8vGYP7BHbz_yrmSW35W_VRTgeJNOMNfwodzMz6HYfn27jtv-uiZdf0RqLVvuv6Zea1h3A9UMdvlTTljRSiKIBjxcKTroKOat1H5zOfTo0HJN5YKE6x0tA7DbTQkYHJDSunfDeVt0Wuu9TiOGIph5X2saPLoAlnxtbR6wv2Z03pawfxxEyk4_rEH6ijtqkfwCqCEw"/>
+<div class="absolute -top-2 -left-2 w-8 h-8 bg-primary-container text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+</div>
+<div class="pt-2">
+<h4 class="text-xl font-bold text-brand-green-dark">Oyna</h4>
+<p class="text-on-surface-variant">Diline dokun, anahtarı aç veya kapat!</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-6 relative z-10">
+<div class="flex-none w-20 h-20 bg-white rounded-full border-4 border-brand-pink-dark flex items-center justify-center shadow-lg overflow-hidden">
+<div class="p-4"><span class="material-symbols-outlined text-4xl text-brand-orange" style="font-variation-settings: 'FILL' 1;">lightbulb</span></div>
+<div class="absolute -top-2 -left-2 w-8 h-8 bg-primary-container text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
+</div>
+<div class="pt-2">
+<h4 class="text-xl font-bold text-brand-pink-dark">Aydınlat</h4>
+<p class="text-on-surface-variant">Işık yanar, oda neşelenir!</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex items-start gap-6 relative z-10">
+<div class="flex-none w-20 h-20 bg-white rounded-full border-4 border-brand-blue-dark flex items-center justify-center shadow-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A joyful portrait of a 5-year-old boy laughing with pure delight in a brightly lit room. Modern, cinematic photography style, warm colors, soft ambient lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOUyKMOMtPmMrWDoqEHIhkYcQZb2Ywzj4Hba5Gd3RnXmxqw8OcskIygIYi0TxgyRqH66a7d1CYrtE-R27aKsI-tJ-2Y6v9wQ9Ungwkab61MlNcoeU-ohdsIffgOQySLTCpKwbBO8KTBOLpaG4RGkBaJOhK8bD32dXerF5trlZHGi9AGjBCIMQaROaZDxOVJYL_d37oR1lC2KdhAXdjfSPO6w6ATtigYBeIRf3JJ9SNVeVaY47286h78YQmfEn9u_aPk5dldzj1eNo"/>
+<div class="absolute -top-2 -left-2 w-8 h-8 bg-primary-container text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
+</div>
+<div class="pt-2">
+<h4 class="text-xl font-bold text-brand-blue-dark">Mutlu Ol</h4>
+<p class="text-on-surface-variant">Çünkü Lambolo ile ışık artık eğlencenin bir parçası!</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Coming Soon Form (Pink Section) -->
+<section class="py-16 bg-brand-pink-dark px-4">
+<div class="max-w-md mx-auto">
+<span class="inline-block px-4 py-1 bg-white text-brand-pink-dark font-bold text-xs rounded-full mb-4">ÇOK YAKINDA!</span>
+<h2 class="text-3xl font-hero-headline-mobile text-white mb-4">İlk üretim için bekleme listesine katıl!</h2>
+<p class="text-white/90 mb-10">Sınırlı sayıda üretilecek. Listeye katılanlara özel kampanyalar ve erken erişim ayrıcalığı seni bekliyor.</p>
+<div class="grid grid-cols-2 gap-4 mb-10">
+<div class="flex flex-col items-center text-center text-white">
+<div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-2">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<span class="text-[10px] leading-tight">Erken Sipariş Avantajı</span>
+</div>
+<div class="flex flex-col items-center text-center text-white">
+<div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-2">
+<span class="material-symbols-outlined">sell</span>
+</div>
+<span class="text-[10px] leading-tight">Özel Lansman İndirimleri</span>
+</div>
+<div class="flex flex-col items-center text-center text-white">
+<div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-2">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<span class="text-[10px] leading-tight">Ürün Gelişim Bilgilendirmeleri</span>
+</div>
+<div class="flex flex-col items-center text-center text-white">
+<div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-2">
+<span class="material-symbols-outlined">card_giftcard</span>
+</div>
+<span class="text-[10px] leading-tight">Sürpriz Hediyeler &amp; Daha Fazlası</span>
+</div>
+</div>
+<form class="space-y-4 bg-white/10 p-6 rounded-[24px] backdrop-blur-md">
+<input class="w-full bg-white text-body-text rounded-xl p-4 border-none" placeholder="Ad Soyad" type="text"/>
+<input class="w-full bg-white text-body-text rounded-xl p-4 border-none" placeholder="E-posta Adresi" type="email"/>
+<button class="w-full py-4 bg-brand-green text-white font-button-text rounded-full shadow-lg flex items-center justify-center gap-2">
+                    Listeye Katıl
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+<p class="text-center text-[10px] text-white/70 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">lock</span> Bilgilerin güvende. Spam yok.
+                </p>
+</form>
+</div>
+</section>
+<!-- Merak Ettikleriniz (Stacked Info) -->
+<section class="py-16 px-4 bg-white">
+<h2 class="font-section-title-mobile text-section-title-mobile text-navy-heading text-center mb-10 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-brand-blue-dark">flare</span> Merak Ettikleriniz <span class="material-symbols-outlined text-brand-blue-dark">flare</span>
+</h2>
+<div class="space-y-6">
+<!-- Info Item 1 -->
+<div class="flex gap-4 p-6 bg-soft-blue-background rounded-3xl">
+<div class="w-12 h-12 bg-primary-container rounded-full flex-none flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">build</span>
+</div>
+<div>
+<h4 class="font-bold text-navy-heading mb-1">Kolay Kurulum</h4>
+<p class="text-sm text-on-surface-variant">Alet gerektirmez! Sadece anahtarın üstüne yerleştir, hepsi bu. Saniyeler içinde kullanıma hazır.</p>
+</div>
+</div>
+<!-- Info Item 2 -->
+<div class="flex gap-4 p-6 bg-brand-green-soft rounded-3xl">
+<div class="w-12 h-12 bg-brand-green rounded-full flex-none flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+<div>
+<h4 class="font-bold text-navy-heading mb-1">Çocuk Dostu Tasarım</h4>
+<p class="text-sm text-on-surface-variant">Yumuşak silikon malzeme, toksik içermez. Küçük eller için güvenli ve dayanıklıdır.</p>
+</div>
+</div>
+<!-- Info Item 3 -->
+<div class="flex gap-4 p-6 bg-brand-pink-soft rounded-3xl">
+<div class="w-12 h-12 bg-brand-pink-dark rounded-full flex-none flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div>
+<h4 class="font-bold text-navy-heading mb-1">Odaya Neşe Katar</h4>
+<p class="text-sm text-on-surface-variant">Renkli karakterler, sıradan anahtarları eğlenceli dekorlara dönüştürür. Işık artık çok daha keyifli!</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-footer-blue pt-16 pb-8 px-4 text-white">
+<div class="flex flex-col gap-10">
+<div>
+<img alt="Lambolo Logo" class="h-10 brightness-0 invert mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6gRIBks9UqmwmU7Dl41SZtsyyl5h3xej2NBxtwo8PPGt7jAAyBpAjG8wDe_rrujTGyAjz5ALFheKZlDSump0x0jYb7T801d40o1aAn6YSR7iB0j7Rr0ujx8XW6XSjEv67w16abramdRCimXKhMob0M7Lt56nqvUrGzxjxp1pOCdJJkm_8SFnnokS6jMdxEBXisHNhXk8QvkINtxFfQBTJjAh8x56Uhzdgw1GQ0doUTXZFCqPC4P7eehezT_apoJbAOQ4rZE7Yr80"/>
+<p class="text-sm text-blue-100/80 leading-relaxed mb-6">
+                    Lambolo, ışığı eğlenceye dönüştüren karakter aksesuarlarıdır. Çocuklar için tasarlandı, aileler için huzurla üretildi.
+                </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">camera</span>
+</div>
+<div class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">face_nod</span>
+</div>
+<div class="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">play_circle</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<h5 class="font-bold text-white border-b border-white/10 pb-2">Keşfet</h5>
+<ul class="space-y-2 text-sm text-blue-100/80">
+<li>Ürünler</li>
+<li>Karakterler</li>
+<li>Nasıl Çalışır?</li>
+<li>Neden Lambolo?</li>
+<li>SSS</li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-bold text-white border-b border-white/10 pb-2">Destek</h5>
+<ul class="space-y-2 text-sm text-blue-100/80">
+<li>İletişim</li>
+<li>Kargo &amp; Teslimat</li>
+<li>İade &amp; Değişim</li>
+<li>Gizlilik Politikası</li>
+<li>Kullanım Koşulları</li>
+</ul>
+</div>
+</div>
+<div class="bg-white/10 p-6 rounded-2xl">
+<h5 class="font-bold text-white mb-2">Haberleri Kaçırma!</h5>
+<p class="text-xs text-blue-100/70 mb-4">Lansman ve kampanyalardan ilk sen haberdar ol.</p>
+<div class="flex flex-col gap-2">
+<input class="bg-white text-body-text rounded-lg p-3 text-sm" placeholder="E-posta adresiniz" type="email"/>
+<button class="bg-brand-orange text-navy-heading font-bold py-3 rounded-lg flex items-center justify-center gap-2">
+                        Abone Ol
+                        <span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 text-center space-y-2">
+<p class="text-xs text-blue-100/60">© 2024 Lambolo. Tüm hakları saklıdır.</p>
+<p class="text-xs text-blue-100/60 flex items-center justify-center gap-1">
+                    Türkiye'de tasarlandı, sevgiyle üretilecek. <span class="material-symbols-outlined text-xs text-red-400" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Mobile Menu Toggle Logic
+        const menuBtn = document.getElementById('mobile-menu-toggle');
+        const closeBtn = document.getElementById('mobile-menu-close');
+        const nav = document.getElementById('mobile-nav');
+
+        menuBtn.addEventListener('click', () => {
+            nav.classList.remove('translate-x-full');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            nav.classList.add('translate-x-full');
+        });
+
+        // Simple Smooth Scroll and Interaction logic can go here
+        // Active state determination for nav if applicable
+    </script>
+</body></html>
