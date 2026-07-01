@@ -13,16 +13,9 @@ export function CharacterSection() {
           altı sevimli karakter.
         </p>
 
-        <div
-          className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:pb-0 lg:grid-cols-6 lg:gap-4"
-        >
+        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-6 lg:gap-4">
           {CHARACTERS.map((character, i) => (
-            <div
-              key={character.id}
-              className="min-w-[78%] snap-start sm:min-w-[60%] md:min-w-0"
-            >
-              <CharacterCard character={character} priority={i === 0} />
-            </div>
+            <CharacterCard key={character.id} character={character} priority={i === 0} />
           ))}
         </div>
       </Container>
