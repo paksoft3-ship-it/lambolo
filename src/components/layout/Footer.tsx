@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Youtube, Mail } from "lucide-react";
+import { Facebook, Instagram, Youtube, Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { Container } from "@/components/layout/Container";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
@@ -88,19 +88,72 @@ export function Footer() {
             <div className="mt-4">
               <NewsletterForm />
             </div>
-            <a
-              href="mailto:info@lambolo.com"
-              className="mt-4 inline-flex items-center gap-2 text-sm text-white/85 transition-colors hover:text-white"
-            >
-              <Mail className="h-4 w-4" />
-              info@lambolo.com
-            </a>
+            <ul className="mt-4 space-y-3 text-sm text-white/85">
+              <li>
+                <a
+                  href="mailto:info@lambolo.com"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-white"
+                >
+                  <Mail className="h-4 w-4 shrink-0" />
+                  info@lambolo.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+905530343902"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-white"
+                >
+                  <Phone className="h-4 w-4 shrink-0" />
+                  0553 034 39 02
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/905530343902"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 transition-colors hover:text-white"
+                >
+                  <MessageCircle className="h-4 w-4 shrink-0" />
+                  +90 553 034 39 02
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                <span className="leading-relaxed">
+                  Paksoft, Bozok Teknopark, Divanlı, Bozok Ünv. Erdoğan Akdağ
+                  Kampüsü, 66200 Yozgat Merkez/Yozgat
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/20 pt-6 text-sm text-white/80 sm:flex-row">
           <p>© 2026 Lambolo. Tüm hakları saklıdır.</p>
           <p>Türkiye&apos;de tasarlanıyor, sevgiyle geliştiriliyor. 💛</p>
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <a
+            href="https://paksoft.com.tr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[13.5px] leading-none transition-colors hover:bg-white/10"
+          >
+            <span className="text-white/60">Geliştiren</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden
+              className="h-[17px] w-[17px] -rotate-12 text-brand-yellow"
+            >
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.85 0 3.58-.5 5.08-1.38-.7.13-1.42.21-2.16.21-5.52 0-10-4.48-10-10S9.42 2.83 14.92 2.83c.74 0 1.46.08 2.16.21C15.58 2.5 13.85 2 12 2z" />
+            </svg>
+            <span className="font-extrabold tracking-wide text-white transition-colors group-hover:text-brand-yellow">
+              PakSoft
+            </span>
+          </a>
         </div>
       </Container>
     </footer>
