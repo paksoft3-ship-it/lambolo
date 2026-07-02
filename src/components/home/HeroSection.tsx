@@ -14,9 +14,9 @@ export function HeroSection() {
           {/* Headline + slogan + paragraph */}
           <div className="hero-headline text-center lg:text-left">
             <h1 className="font-display text-[40px] font-bold leading-[1.04] sm:text-[52px] lg:text-[60px]">
-              <span className="block text-navy">Işığı kendi açıp</span>
-              <span className="headline-outline block text-brand-pink">kapatmayı sevdiren</span>
-              <span className="headline-outline block text-brand-blue">karakterler!</span>
+              <span className="block text-navy">Her Odanın</span>
+              <span className="headline-outline block text-brand-pink">Bir Karakteri</span>
+              <span className="headline-outline block text-brand-blue">Olsun.</span>
             </h1>
 
             <p className="mx-auto mt-5 inline-flex flex-wrap items-center justify-center gap-x-1.5 rounded-full bg-white px-5 py-2 font-display text-lg font-bold shadow-soft lg:mx-0">
@@ -26,9 +26,8 @@ export function HeroSection() {
             </p>
 
             <p className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-navy/80 lg:mx-0 lg:text-base">
-              Lambolo karakterleri, çocukların ışığı kendi başlarına açıp kapatmayı
-              keşfetmelerine yardımcı olmak için geliştiriliyor. Günlük rutini eğlenceli
-              bir alışkanlığa dönüştürür.
+              Lambolo; çocuk odaları, mutfaklar ve oyuncu odaları için tasarlanmış
+              dekoratif anahtar kapaklarıyla yaşam alanlarını kişiselleştirir.
             </p>
           </div>
 
@@ -49,7 +48,9 @@ export function HeroSection() {
               <br />
               ÜSTÜNE TAK,
               <br />
-              IŞIĞI OYNA!
+              DOKUN. OYNA.
+              <br />
+              AYDINLAT!
             </div>
             {/* Curved arrow pointing toward tongue/switch */}
             <svg

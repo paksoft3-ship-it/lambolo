@@ -6,6 +6,7 @@ export type NavLink = {
 /** Section anchors live on the homepage; partnership is its own route. */
 export const NAV_LINKS: NavLink[] = [
   { label: "Karakterler", href: "/#karakterler" },
+  { label: "Mutfak Serisi", href: "/#mutfak-serisi" },
   { label: "Nasıl Çalışır?", href: "/#nasil-calisir" },
   { label: "Neden Lambolo?", href: "/#neden-lambolo" },
   { label: "SSS", href: "/#sss" },
@@ -19,6 +20,7 @@ export const HEADER_CTA = {
 
 export const FOOTER_EXPLORE: NavLink[] = [
   { label: "Karakterler", href: "/#karakterler" },
+  { label: "Mutfak Serisi", href: "/#mutfak-serisi" },
   { label: "Nasıl Çalışır?", href: "/#nasil-calisir" },
   { label: "Neden Lambolo?", href: "/#neden-lambolo" },
   { label: "Merak Ettikleriniz", href: "/#sss" },
