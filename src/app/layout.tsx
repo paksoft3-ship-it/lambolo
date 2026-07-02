@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { fredoka, nunitoSans } from "@/lib/fonts";
+import { baloo, nunitoSans } from "@/lib/fonts";
 import { CookieConsent } from "@/components/cookies/CookieConsent";
 import "./globals.css";
 
@@ -72,7 +72,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className={`${fredoka.variable} ${nunitoSans.variable}`}>
+    <html lang="tr" className={`${baloo.variable} ${nunitoSans.variable}`}>
       <body>
         <script
           type="application/ld+json"

@@ -1,12 +1,14 @@
-import { Fredoka, Nunito_Sans } from "next/font/google";
+import { Baloo_2, Nunito_Sans } from "next/font/google";
 
-// Display font — headlines, section titles, character names, large CTAs
-// "latin-ext" is required so Turkish glyphs (ş ğ ı İ ç ö ü) render in the font
-// itself instead of falling back to a mismatched system font.
-export const fredoka = Fredoka({
+// Display font — headlines, section titles, character names, large CTAs.
+// Baloo 2 (a rounded, chunky, playful face like Fredoka) is used INSTEAD of
+// Fredoka because Fredoka's Google Fonts files ship no Turkish glyphs at all —
+// its latin-ext subset lacks ş ğ ı İ ç ö ü, so every Turkish heading fell back
+// to a mismatched system font. Baloo 2 covers the full Turkish set.
+export const baloo = Baloo_2({
   subsets: ["latin", "latin-ext"],
   weight: ["600", "700"],
-  variable: "--font-fredoka",
+  variable: "--font-baloo",
   display: "swap",
 });
 

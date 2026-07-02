@@ -27,7 +27,7 @@ const config: Config = {
         "soft-border": "#E7EDF4",
       },
       fontFamily: {
-        display: ["var(--font-fredoka)", "sans-serif"],
+        display: ["var(--font-baloo)", "sans-serif"],
         sans: ["var(--font-nunito)", "sans-serif"],
       },
       maxWidth: {
