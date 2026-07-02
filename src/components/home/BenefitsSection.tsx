@@ -1,35 +1,31 @@
-import { Lightbulb, ShieldCheck, Target, Wrench } from "lucide-react";
+import { Sparkles, Zap, Home, Box } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { BenefitCard, type Benefit } from "@/components/home/BenefitCard";
 
 const BENEFITS: Benefit[] = [
   {
-    title: "Işığı Kendi Açıp Kapatsın",
-    description:
-      "Günlük ışık açma–kapama alışkanlığını eğlenceli bir oyuna dönüştürmeyi hedefler.",
-    Icon: Lightbulb,
+    title: "Evinize Karakter Katar",
+    description: "Sıradan anahtarları dekoratif karakterlere dönüştürür.",
+    Icon: Sparkles,
     iconBg: "#FFC900",
   },
   {
-    title: "Çocuk Dostu Tasarım",
-    description:
-      "Yuvarlak hatları ve sevimli karakterleriyle çocuk odaları düşünülerek tasarlanıyor.",
-    Icon: ShieldCheck,
+    title: "Kolay Kurulum",
+    description: "Mevcut anahtarın üzerine saniyeler içinde takılır.",
+    Icon: Zap,
+    iconBg: "#087CF0",
+  },
+  {
+    title: "Yaşam Alanına Uygun",
+    description: "Çocuk odası, mutfak, oyuncu odası ve daha fazlası…",
+    Icon: Home,
     iconBg: "#41B84E",
   },
   {
-    title: "Günlük Rutin Oluşturur",
-    description:
-      "Uyku öncesi ışığı kapatma alışkanlığını desteklemeyi amaçlar.",
-    Icon: Target,
+    title: "3D Tasarım",
+    description: "Premium tasarım, dayanıklı üretim.",
+    Icon: Box,
     iconBg: "#F53667",
-  },
-  {
-    title: "Tak-Çıkar Kurulum",
-    description:
-      "Anahtara zarar vermeden kolayca takılıp çıkarılacak şekilde geliştiriliyor.",
-    Icon: Wrench,
-    iconBg: "#087CF0",
   },
 ];
 
@@ -59,8 +55,8 @@ export function BenefitsSection() {
           Neden Lambolo?
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-center text-[15px] text-white/85">
-          Eğlenceli görünür, ama asıl amacı çocukların günlük ışık alışkanlığını
-          kendi başlarına kazanmasına yardımcı olmak.
+          Sıradan anahtarları eğlenceli karakterlere dönüştüren, her yaşam
+          alanına uygun dekoratif kapaklar.
         </p>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

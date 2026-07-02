@@ -8,7 +8,7 @@ type LogoProps = {
   href?: string;
 };
 
-const ASPECT = 124 / 458; // intrinsic ratio of the extracted logo asset
+const ASPECT = 71 / 371; // intrinsic ratio of the wordmark logo asset
 
 export function Logo({
   width = 190,

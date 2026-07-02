@@ -4,9 +4,9 @@ import { CookieConsent } from "@/components/cookies/CookieConsent";
 import "./globals.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lambolo.com";
-const TITLE = "Lambolo | Dokun. Oyna. Aydınlat.";
+const TITLE = "Lambolo | Her Odanın Bir Karakteri Olsun.";
 const DESCRIPTION =
-  "Lambolo, çocukların ışık anahtarlarını eğlenceli karakterlere dönüştüren Anahtar Serisi ile çok yakında. Günlük ışık rutinini keyifli bir alışkanlığa dönüştürür.";
+  "Lambolo, sıradan ışık anahtarlarını yaşam alanlarına uygun karakterlere dönüştüren dekoratif anahtar kapaklarıdır. Çok yakında.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -62,7 +62,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "Lambolo",
   url: SITE_URL,
-  slogan: "Dokun. Oyna. Aydınlat.",
+  slogan: "Her Odanın Bir Karakteri Olsun.",
   description: DESCRIPTION,
   email: "info@lambolo.com",
   sameAs: ["https://instagram.com/hellolambolo"],

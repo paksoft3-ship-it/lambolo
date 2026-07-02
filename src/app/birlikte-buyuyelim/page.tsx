@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  ArrowRight,
   Factory,
   Globe,
   Handshake,
@@ -8,11 +9,13 @@ import {
   Rocket,
   ShoppingBag,
   Smartphone,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/layout/Container";
+import { Button } from "@/components/ui/Button";
 import { PartnershipForm } from "@/components/forms/PartnershipForm";
 
 export const metadata: Metadata = {
@@ -107,6 +110,30 @@ export default function PartnershipPage() {
           </Container>
         </section>
 
+        {/* Co-design community — "Birlikte Tasarlayalım" */}
+        <section className="bg-white pt-14 lg:pt-20" aria-label="Birlikte Tasarlayalım">
+          <Container>
+            <div className="relative overflow-hidden rounded-section bg-gradient-to-br from-brand-blue to-brand-blue-dark px-6 py-12 text-center text-white shadow-soft-lg sm:px-10 lg:py-16">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-bold">
+                <Sparkles className="h-4 w-4" />
+                Birlikte Tasarlayalım
+              </span>
+              <h2 className="mx-auto mt-5 max-w-2xl font-display text-[28px] font-bold leading-tight lg:text-[40px]">
+                Sıradaki Lambolo karakteri senin fikrin olabilir.
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/90">
+                Yeni karakter önerilerinizi bize gönderin. Belki bir sonraki Lambolo
+                tam da sizin hayal ettiğiniz karakter olur. Birlikte tasarlar, birlikte
+                büyürüz. 💛
+              </p>
+              <Button href="#basvuru" size="lg" variant="secondary" className="mt-7">
+                Karakter Öner
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </Container>
+        </section>
+
         {/* Partner types */}
         <section className="bg-white py-16 lg:py-20">
           <Container>
@@ -136,7 +163,7 @@ export default function PartnershipPage() {
         </section>
 
         {/* Application form */}
-        <section className="bg-cream py-16 lg:py-20" aria-label="Başvuru formu">
+        <section id="basvuru" className="scroll-mt-24 bg-cream py-16 lg:py-20" aria-label="Başvuru formu">
           <Container className="max-w-3xl">
             <div className="rounded-section border border-soft-border bg-white p-6 shadow-soft-lg sm:p-9">
               <h2 className="font-display text-[26px] font-bold text-navy lg:text-[30px]">

@@ -16,10 +16,10 @@ const STEPS: Step[] = [
   {
     number: 2,
     title: "Dokun",
-    description: "Karakterin hareketli parçasına — Kurbi'nin diline — dokun.",
+    description: "Karakterin hareketli parçasına dokun — dil, kulp ya da kol.",
     accent: "#41B84E",
     image: "/images/products/kurbi.png",
-    imageAlt: "Kurbi'nin diline dokunarak anahtarı hareket ettirme adımı",
+    imageAlt: "Karakterin hareketli parçasına dokunarak anahtarı hareket ettirme adımı",
     visualBg: "#EAF8EC",
   },
   {

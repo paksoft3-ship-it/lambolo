@@ -19,15 +19,9 @@ export function HeroSection() {
               <span className="headline-outline block text-brand-blue">Olsun.</span>
             </h1>
 
-            <p className="mx-auto mt-5 inline-flex flex-wrap items-center justify-center gap-x-1.5 rounded-full bg-white px-5 py-2 font-display text-lg font-bold shadow-soft lg:mx-0">
-              <span className="text-brand-orange">Dokun.</span>
-              <span className="text-brand-green">Oyna.</span>
-              <span className="text-brand-blue">Aydınlat.</span>
-            </p>
-
             <p className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-navy/80 lg:mx-0 lg:text-base">
-              Lambolo; çocuk odaları, mutfaklar ve oyuncu odaları için tasarlanmış
-              dekoratif anahtar kapaklarıyla yaşam alanlarını kişiselleştirir.
+              Lambolo, sıradan ışık anahtarlarını yaşam alanlarına uygun
+              karakterlere dönüştüren dekoratif anahtar kapaklarıdır.
             </p>
           </div>
 
@@ -48,9 +42,9 @@ export function HeroSection() {
               <br />
               ÜSTÜNE TAK,
               <br />
-              DOKUN. OYNA.
+              ODANA
               <br />
-              AYDINLAT!
+              KARAKTER KAT!
             </div>
             {/* Curved arrow pointing toward tongue/switch */}
             <svg

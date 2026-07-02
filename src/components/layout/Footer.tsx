@@ -31,8 +31,8 @@ export function Footer() {
           <div>
             <Logo width={180} className="h-9 w-auto" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/85">
-              Lambolo, sıradan ışık anahtarlarını çocuklar için keyifli bir günlük
-              alışkanlığa dönüştürmek üzere geliştiriliyor.
+              Lambolo, yaşam alanlarını daha eğlenceli ve daha kişisel hale getiren
+              dekoratif anahtar kapakları geliştirir.
             </p>
             <p className="mt-4 text-sm font-bold text-white">@hellolambolo</p>
             <ul className="mt-3 flex items-center gap-3">

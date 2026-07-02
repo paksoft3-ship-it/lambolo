@@ -35,6 +35,7 @@ export type WaitlistInput = z.input<typeof waitlistSchema>;
 export type WaitlistPayload = z.output<typeof waitlistSchema>;
 
 export const PARTNERSHIP_TYPES = [
+  "Karakter Önerisi",
   "Bayilik",
   "Distribütörlük",
   "Üretim",
